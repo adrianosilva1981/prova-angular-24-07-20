@@ -92,9 +92,17 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.less"
+              "src/styles.less",
+              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/nova-light/theme.css",
+              "node_modules/primeng/resources/primeng.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/popper.js/dist/umd/popper.js",
+              "node_modules/bootstrap/dist/js/bootstrap.js"
+            ]
           }
         },
         "lint": {
@@ -123,6 +131,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "prova-angular-res"
+    }
+  },
+  "defaultProject": "prova-angular-res",
+  "cli": {
+    "analytics": "26ab0613-80c6-4323-a2ac-a6b6ff9b26cd"
+  }
 }

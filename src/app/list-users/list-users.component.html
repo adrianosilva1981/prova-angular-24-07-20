@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-between">
+    <div>
+        <h3><i class="fas fa-users"></i>&nbsp;Usuários</h3>
+    </div>
+    <div>
+        <div class="d-flex justify-content-between">
+            <div>
+                <input type="text" class="form-control form-control-sm"
+                    (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Procure">
+            </div>
+            <div style="margin-left: 10px;">
+                <a href="user" class="btn btn-sm btn-dark text-light"><i class="fas fa-user-plus"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<p-table #dt [value]="users" [paginator]="users.length > 10" [rows]="10" styleClass="p-datatable-responsive-demo"
+    [globalFilterFields]="['name','cpf','phone','street']">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Telefone</th>
+            <th>Endereço</th>
+            <th style="text-align: right;">Ações</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user let-rowIndex="rowIndex">
+        <tr>
+            <td>
+                {{user.name}}
+                <div><small>{{user.email}}</small></div>
+            </td>
+            <td>{{user.cpf | mask: '000.000.000-00'}}</td>
+            <td>{{user.phone | mask: '(00) 0000-0000' || '(00) 0 0000-0000'}}</td>
+            <td><small>{{user.street}}, CEP: {{user.cep}} - {{user.city}}/{{user.state}}</small></td>
+            <td style="text-align: right;">
+                <a [href]="'user/' + user.id"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;
+                <a (click)="deleteUser(user.id)"><i class="fas fa-trash-alt"></i></a>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>

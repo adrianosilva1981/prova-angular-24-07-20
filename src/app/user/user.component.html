@@ -1,0 +1,55 @@
+<h3><i class="fas fa-user-plus"></i>&nbsp;Novo/Editar Usuário</h3>
+<hr>
+
+<div class="row justify-content-md-center">
+    <div class="col col-lg-6">
+        <form [formGroup]="userForm" novalidate (ngSubmit)="saveUser()">
+            <div class="form-group">
+                <label>Nome</label>
+                <input type="text" class="form-control" required formControlName="name"
+                    [ngClass]="{'is-invalid': userForm.get('name').invalid && userForm.get('name').touched}">
+                <div class="errorMessage" *ngIf="userForm.controls.name.hasError('minlength')">min: 2 minlength</div>
+            </div>
+            <div class="form-group">
+                <label>CPF</label>
+                <input type="text" class="form-control" required formControlName="cpf" mask="000.000.000-00"
+                    [ngClass]="{'is-invalid': userForm.get('cpf').invalid && userForm.get('cpf').touched}">
+                <div class="errorMessage" *ngIf="userForm.controls.cpf.hasError('minlength')">min: 11 minlength</div>
+            </div>
+            <div class="form-group">
+                <label>Telefone</label>
+                <input type="text" class="form-control" required formControlName="phone"
+                    [ngClass]="{'is-invalid': userForm.get('phone').invalid && userForm.get('phone').touched}"
+                    mask="(00) 0000-0000||(00) 0 0000-0000">
+            </div>
+            <div class="form-group">
+                <label>E-mail</label>
+                <input type="text" class="form-control" required formControlName="email"
+                    [ngClass]="{'is-invalid': userForm.get('email').invalid && userForm.get('email').touched}">
+            </div>
+            <div class="form-group">
+                <label>CEP&nbsp;&nbsp;<i *ngIf="loading" class="fas fa-spinner fa-pulse"></i></label>
+                <input type="text" class="form-control" required formControlName="cep" mask="00000-000"
+                    [ngClass]="{'is-invalid': userForm.get('cep').invalid && userForm.get('cep').touched}"
+                    (blur)="searchZipCode()">
+            </div>
+            <div class="form-group">
+                <label>Endereço</label>
+                <input type="text" class="form-control" required formControlName="street">
+            </div>
+            <div class="form-group">
+                <label>Cidade</label>
+                <input type="text" class="form-control" required formControlName="city">
+            </div>
+            <div class="form-group">
+                <label>Estado</label>
+                <input type="text" class="form-control" required formControlName="state">
+            </div>
+            <div class="text-center">
+                <button type="button" [disabled]="!userForm.valid" class="btn btn-success" (click)="saveUser()">OK</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<p-toast position="bottom-right"></p-toast>
